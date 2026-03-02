@@ -2,15 +2,18 @@ import React, { useState } from 'react';
 import DragWindow, { type WindowState } from '../../window/Window';
 import Taskbar from '../../taskbar/Taskbar';
 
+import Icon, { type IconType } from '../../Icon/Icon';
 import Terminal from '../../window/windows/Terminal';
 
 import './Desktop.scss';
 
 export interface DesktopItem {
 	text: string;
-	icon: string;
+	icon: IconType;
 	link?: string;
 	content?: React.ReactNode;
+	fullscreen?: boolean;
+	allowMaximize?: boolean;
 }
 
 export const Desktop = () => {
@@ -36,7 +39,9 @@ export const Desktop = () => {
 		{
 			text: 'Megabonk Lab',
 			icon: 'megabonk-lab',
-            link: 'https://vulpya.github.io/megabonk-lab'
+			content: <iframe src="https://vulpya.github.io/megabonk-lab" />,
+			fullscreen: true,
+			allowMaximize: false
 		},
 		{
 			text: 'My Github',
@@ -45,7 +50,7 @@ export const Desktop = () => {
 		}
 	];
 
-	const openWindow = (title: string, content: React.ReactNode) => {
+	const openWindow = (title: string, content: React.ReactNode, fullscreen = false, allowMaximize = true) => {
 		const existing = windows.find((w) => w.title === title);
 		if (existing) {
 			focusWindow(existing.id);
@@ -56,7 +61,9 @@ export const Desktop = () => {
 			title,
 			content,
 			isMinimized: false,
-			zIndex: topZIndex + 1
+            allowMaximize, 
+			zIndex: topZIndex + 1,
+            fullscreen
 		};
 		setWindows([...windows, newWin]);
 		setTopZIndex((prev) => prev + 1);
@@ -99,12 +106,14 @@ export const Desktop = () => {
 								window.open(item.link, '_blank')?.focus();
 								return;
 							}
-							openWindow(item.text, item.content);
+							openWindow(
+								item.text,
+								item.content,
+								item.fullscreen,
+                                item.allowMaximize
+							);
 						}}>
-						<div className="icon-container">
-							<i className={`icon ${item.icon}`} />
-							<span>{item.text}</span>
-						</div>
+						<Icon text={item.text} type={item.icon}></Icon>
 					</div>
 				))}
 			</div>
@@ -115,9 +124,10 @@ export const Desktop = () => {
 					title={win.title}
 					width={300}
 					height={200}
-					allowMaximize
+					allowMaximize={win.allowMaximize}
 					zIndex={win.zIndex}
 					isMinimized={win.isMinimized}
+					fullscreen={win.fullscreen}
 					onMinimize={toggleWindow}
 					onClose={closeWindow}
 					onFocus={focusWindow}>

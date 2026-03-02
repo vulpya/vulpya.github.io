@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+
 import './Window.scss';
 
 export interface WindowState {
@@ -6,7 +7,9 @@ export interface WindowState {
 	title: string;
 	content: React.ReactNode;
 	isMinimized: boolean;
+	allowMaximize: boolean;
 	zIndex: number;
+	fullscreen: boolean;
 }
 
 interface DragWindowProps {
@@ -14,6 +17,7 @@ interface DragWindowProps {
 	title: string;
 	width?: number;
 	height?: number;
+    fullscreen?: boolean;
 	icon?: string;
 	allowMaximize?: boolean;
 	isMinimized?: boolean;
@@ -29,6 +33,7 @@ const DragWindow = ({
 	title,
 	width,
 	height,
+    fullscreen = false,
 	allowMaximize = false,
 	isMinimized = false,
 	zIndex = 1,
@@ -42,7 +47,7 @@ const DragWindow = ({
 	const [position, setPosition] = useState({ x: 50, y: 50 });
 	const [isDragging, setDragging] = useState(false);
 	const [dragDiff, setDragDiff] = useState({ x: 0, y: 0 });
-	const [isMaximized, setMaximized] = useState(false);
+	const [isMaximized, setMaximized] = useState(fullscreen);
 
 	const onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
 		if (
