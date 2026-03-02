@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import './Terminal.scss';
 
 const Terminal = () => {
+	const inputRef = useRef<HTMLInputElement>(null);
+
 	const [output, setOutput] = useState<string[]>([
 		'Welcome to vulpyaOS Terminal',
 		'Type "help" for commands.'
@@ -43,8 +45,12 @@ const Terminal = () => {
 		setInput('');
 	};
 
+	const handleFocus = () => {
+		inputRef.current?.focus();
+	};
+
 	return (
-		<div className="cmd-folder">
+		<div className="cmd-folder" onClick={handleFocus}>
 			<div className="cmd-output">
 				{output.map((line, idx) => (
 					<div key={idx}>{line}</div>
@@ -56,6 +62,7 @@ const Terminal = () => {
 					type="text"
 					className="cmd-input"
 					value={input}
+					ref={inputRef}
 					onChange={(e) => {
 						setInput(e.target.value);
 					}}

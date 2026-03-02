@@ -1,9 +1,12 @@
+import type { DesktopItem } from '../views/Desktop/Desktop';
+import type { WindowState } from '../window/Window';
+
 import './Taskbar.scss';
 
 interface TaskbarProps {
-	windows: { id: string; title: string; isMinimized: boolean }[];
+	windows: WindowState[];
 	onTaskClick: (id: string) => void;
-	desktopItems: { text: string; icon: string }[];
+	desktopItems: DesktopItem[];
 }
 
 const Taskbar = ({

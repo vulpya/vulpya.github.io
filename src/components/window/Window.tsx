@@ -1,6 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './Window.scss';
 
+export interface WindowState {
+	id: string;
+	title: string;
+	content: React.ReactNode;
+	isMinimized: boolean;
+	zIndex: number;
+}
+
 interface DragWindowProps {
 	id: string;
 	title: string;
@@ -11,7 +19,7 @@ interface DragWindowProps {
 	isMinimized?: boolean;
 	zIndex?: number;
 	children: React.ReactNode;
-    onMinimize: (id: string) => void;
+	onMinimize: (id: string) => void;
 	onClose: (id: string) => void;
 	onFocus: (id: string) => void;
 }
@@ -37,7 +45,11 @@ export const DragWindow: React.FC<DragWindowProps> = ({
 	const [isMaximized, setMaximized] = useState(false);
 
 	const onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
-		if (!(e.target as HTMLElement).closest('.win-title')) return;
+		if (
+			!(e.target as HTMLElement).closest('.win-title') ||
+			(e.target as HTMLElement).closest('.button')
+		)
+			return;
 		setDragging(true);
 		setDragDiff({ x: e.clientX - position.x, y: e.clientY - position.y });
 		onFocus(id);
@@ -56,8 +68,14 @@ export const DragWindow: React.FC<DragWindowProps> = ({
 			const newY = e.clientY - dragDiff.y;
 
 			setPosition({
-				x: Math.max(0, Math.min(newX, window.innerWidth - (width ?? 0))),
-				y: Math.max(0, Math.min(newY, window.innerHeight - (height ?? 0)))
+				x: Math.max(
+					0,
+					Math.min(newX, window.innerWidth - (width ?? 0))
+				),
+				y: Math.max(
+					0,
+					Math.min(newY, window.innerHeight - (height ?? 0))
+				)
 			});
 		};
 

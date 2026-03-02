@@ -2,22 +2,14 @@ import React, { useState } from 'react';
 import Taskbar from '../../taskbar/Taskbar';
 
 import './Desktop.scss';
-import { DragWindow } from '../../window/Window';
+import { DragWindow, type WindowState } from '../../window/Window';
 import Terminal from '../../window/windows/Terminal';
 
-interface DesktopItem {
+export interface DesktopItem {
 	text: string;
 	icon: string;
 	link?: string;
 	content?: React.ReactNode;
-}
-
-interface WindowState {
-	id: string;
-	title: string;
-	content: React.ReactNode;
-	isMinimized: boolean;
-	zIndex: number;
 }
 
 export const Desktop: React.FC = () => {
@@ -35,11 +27,11 @@ export const Desktop: React.FC = () => {
 			icon: 'computer',
 			content: <p>About Me content.</p>
 		},
-        {
-            text: 'Terminal',
-            icon: 'console',
-            content: <Terminal />
-        },
+		{
+			text: 'Terminal',
+			icon: 'console',
+			content: <Terminal />
+		},
 		{
 			text: 'My Projects',
 			icon: 'dir-closed',
