@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import DragWindow, { type WindowState } from '../../window/Window';
 import Taskbar from '../../taskbar/Taskbar';
 
-import './Desktop.scss';
-import { DragWindow, type WindowState } from '../../window/Window';
 import Terminal from '../../window/windows/Terminal';
+
+import './Desktop.scss';
 
 export interface DesktopItem {
 	text: string;
@@ -12,7 +13,7 @@ export interface DesktopItem {
 	content?: React.ReactNode;
 }
 
-export const Desktop: React.FC = () => {
+export const Desktop = () => {
 	const [windows, setWindows] = useState<WindowState[]>([]);
 	const [topZIndex, setTopZIndex] = useState(1);
 
@@ -25,7 +26,7 @@ export const Desktop: React.FC = () => {
 		{
 			text: 'Computer',
 			icon: 'computer',
-			content: <p>About Me content.</p>
+			content: <p>Heyy, I'm Vulpya :33</p>
 		},
 		{
 			text: 'Terminal',
@@ -35,7 +36,7 @@ export const Desktop: React.FC = () => {
 		{
 			text: 'My Projects',
 			icon: 'dir-closed',
-			content: <p>Project list.</p>
+			content: <p>Projects</p>
 		},
 		{
 			text: 'My Github',

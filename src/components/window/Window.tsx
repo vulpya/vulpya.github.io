@@ -24,7 +24,7 @@ interface DragWindowProps {
 	onFocus: (id: string) => void;
 }
 
-export const DragWindow: React.FC<DragWindowProps> = ({
+const DragWindow = ({
 	id,
 	title,
 	width,
@@ -36,7 +36,7 @@ export const DragWindow: React.FC<DragWindowProps> = ({
 	onMinimize,
 	onFocus,
 	children
-}) => {
+}: DragWindowProps) => {
 	const windowRef = useRef<HTMLDivElement>(null);
 
 	const [position, setPosition] = useState({ x: 50, y: 50 });
@@ -140,3 +140,5 @@ export const DragWindow: React.FC<DragWindowProps> = ({
 		</div>
 	);
 };
+
+export default DragWindow;

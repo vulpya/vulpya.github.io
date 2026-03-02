@@ -9,11 +9,7 @@ interface TaskbarProps {
 	desktopItems: DesktopItem[];
 }
 
-const Taskbar = ({
-	windows,
-	onTaskClick,
-	desktopItems
-}: TaskbarProps) => {
+const Taskbar = ({ windows, onTaskClick, desktopItems }: TaskbarProps) => {
 	return (
 		<div id="taskbar">
 			<div id="start-button">Start</div>
