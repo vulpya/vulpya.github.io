@@ -1,0 +1,33 @@
+@use '../../../styles/variables' as vars;
+
+#desktop {
+	display: flex;
+	flex-direction: column;
+	font-size: 10px;
+
+	.desktop-items {
+        display: block;
+        flex: 1 1 auto;
+
+		.desktop-item {
+			height: vars.$d-item-h;
+			width: vars.$d-item-w;
+
+			text-align: center;
+			user-select: none;
+
+			padding: 7px 0;
+			color: vars.$font-light;
+
+			border: 1px solid vars.$os-bg;
+
+			&:hover {
+				border: 1px solid lightgray;
+			}
+
+			&.left {
+				float: left;
+			}
+		}
+	}
+}

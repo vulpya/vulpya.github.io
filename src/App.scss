@@ -1,13 +1,26 @@
 @use './styles/variables' as vars;
 
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: W95FA;
+}
+
 html,
 body,
+#root,
+#desktop,
+.desktop-items {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
 #root {
-	margin: 0;
-	padding: 0;
-	height: 100%;
-	width: 100%;
-	font-family: vars.$font;
-	background-color: vars.$background;
-	color: vars.$foreground;
+    display: flex;
+    flex-flow: column;
+    flex-wrap: nowrap;
+
+    background-color: vars.$os-bg
 }

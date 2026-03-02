@@ -1,0 +1,53 @@
+.cmd-folder {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	background-color: #000;
+	color: #0f0;
+	font-family: monospace;
+	padding: 10px;
+
+	.cmd-output {
+		flex: 1;
+		overflow-y: auto;
+		margin-bottom: 5px;
+
+		div {
+			line-height: 1.4;
+		}
+	}
+
+	.cmd-input-form {
+		display: flex;
+		align-items: center;
+
+		.cmd-prompt {
+			margin-right: 5px;
+			user-select: none;
+		}
+
+		.cmd-input {
+			flex: 1;
+			background-color: #000;
+			color: #0f0;
+			border: none;
+			outline: none;
+			font-family: monospace;
+			font-size: 14px;
+		}
+	}
+
+	/* Scrollbar styling (optional) */
+	.cmd-output::-webkit-scrollbar {
+		width: 8px;
+	}
+
+	.cmd-output::-webkit-scrollbar-track {
+		background: #111;
+	}
+
+	.cmd-output::-webkit-scrollbar-thumb {
+		background-color: #333;
+		border-radius: 4px;
+	}
+}

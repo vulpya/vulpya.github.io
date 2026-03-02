@@ -1,0 +1,109 @@
+@use '../../styles/variables' as vars;
+
+#taskbar {
+	flex: 0 1 vars.$t-height;
+	background-color: vars.$silver;
+	display: flex;
+	flex-flow: row;
+	z-index: 99;
+	font-size: 12px;
+	padding: 2px;
+	box-shadow: inset 1px 0 vars.$white;
+	border-top: 2px solid #f4f4f4;
+	border-bottom: 2px solid #4e4e4e;
+
+	#start-button {
+		margin: 0 5px 2px 2px;
+		padding: 5px;
+		background-color: vars.$silver;
+		box-shadow:
+			inset 1px 1px #dfdfdf,
+			1px 0 vars.$black,
+			0 1px vars.$black,
+			1px 1px vars.$black;
+		border-top: 2px solid vars.$white;
+		border-left: 2px solid vars.$white;
+		border-right: 2px solid vars.$gray;
+		border-bottom: 2px solid vars.$gray;
+		user-select: none;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		&.active {
+			border-top: 2px solid vars.$black;
+			border-left: 2px solid vars.$black;
+			border-right: 2px solid vars.$white;
+			border-bottom: 2px solid vars.$white;
+			box-shadow: inset 1px 1px vars.$gray;
+		}
+
+		.ico {
+			width: 45px;
+			height: 14px;
+			background-image: url('../icons/start-button.png');
+			background-repeat: no-repeat;
+			user-select: none;
+			-webkit-user-drag: none;
+		}
+	}
+
+	#taskbar-items {
+		display: flex;
+		align-items: center; // center vertically
+		flex-flow: row;
+
+		.taskbar-item {
+			display: flex;
+			align-items: center; // vertical center
+			justify-content: center; // horizontal center
+			width: vars.$t-item-h;
+			height: vars.$t-item-h;
+			user-select: none;
+			font-size: 12px;
+			font-family: Arial, sans-serif;
+			font-weight: 400;
+			color: vars.$font-dark;
+			margin-left: 2px; // optional spacing between icons
+			box-sizing: border-box;
+			padding: 0;
+
+			&:hover {
+				background-color: vars.$silver-hover;
+			}
+
+			&.focused,
+			&:active {
+				border-top: 2px solid vars.$black;
+				border-left: 2px solid vars.$black;
+				border-right: 2px solid vars.$white;
+				border-bottom: 2px solid vars.$white;
+				box-shadow: inset 1px 1px vars.$gray;
+				background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAG0lEQVQYV2M8cODAf3t7ewbG/////z948CADAFuqCj64BtLKAAAAAElFTkSuQmCC);
+			}
+		}
+	}
+
+	#taskbar-system-tray {
+		height: vars.$t-height;
+		line-height: calc(vars.$t-height - 4px);
+		margin-left: auto;
+		user-select: none;
+		padding: 0 10px;
+		border-top: 2px solid vars.$gray;
+		border-left: 2px solid vars.$gray;
+		border-right: 2px solid vars.$white;
+		border-bottom: 2px solid vars.$white;
+		font-family: 'Courier New', Courier, monospace;
+		font-size: 11px;
+		color: vars.$font-dark;
+		text-align: right;
+
+		#taskbar-time {
+			display: inline-block;
+			padding: 0 4px;
+			user-select: none;
+			line-height: calc(vars.$t-height - 4px);
+		}
+	}
+}
