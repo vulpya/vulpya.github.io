@@ -34,9 +34,9 @@ export const Desktop = () => {
 			content: <Terminal />
 		},
 		{
-			text: 'My Projects',
-			icon: 'dir-closed',
-			content: <p>Projects</p>
+			text: 'Megabonk Lab',
+			icon: 'megabonk-lab',
+            link: 'https://vulpya.github.io/megabonk-lab'
 		},
 		{
 			text: 'My Github',
