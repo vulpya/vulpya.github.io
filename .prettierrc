@@ -1,0 +1,12 @@
+{
+    "printwidth": 300,
+    "tabWidth": 4,
+    "useTabs": true,
+    "semi": true,
+    "singleQuote": true,
+    "bracketSameLine": true,
+    "bracketSpacing": true,
+    "trailingComma": "none",
+    "proseWrap": "preserve",
+    "editor.formatOnSave": true
+}
