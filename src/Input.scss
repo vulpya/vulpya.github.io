@@ -1,0 +1,39 @@
+@use './styles/variables' as vars;
+
+.button,
+input[type='button'],
+input[type='reset'],
+input[type='submit'],
+button {
+	min-height: 23px;
+	line-height: 23px;
+	min-width: 75px;
+	margin-left: 6px;
+	text-align: center;
+	background: vars.$silver;
+	box-shadow:
+		inset -1px -1px vars.$black,
+		inset 1px 1px vars.$white,
+		inset -2px -2px vars.$gray,
+		inset 2px 2px #dfdfdf;
+	user-select: none;
+
+	&:active {
+		box-shadow:
+			inset -1px -1px vars.$white,
+			inset 1px 1px vars.$black,
+			inset -2px -2px #dfdfdf,
+			inset 2px 2px vars.$gray;
+	}
+}
+
+.container {
+	background: vars.$white;
+	box-shadow:
+		inset -1px -1px vars.$white,
+		inset 1px 1px vars.$gray,
+		inset -2px -2px #dfdfdf,
+		inset 2px 2px vars.$black;
+	margin: 0;
+	min-height: 250px;
+}

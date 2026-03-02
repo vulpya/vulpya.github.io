@@ -1,0 +1,97 @@
+// -------------------------
+// ICON PATHS
+// -------------------------
+$icon-path: '/icons';
+
+.icon-container {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	span {
+		padding-top: 5px;
+	}
+
+	.icon {
+		background-repeat: no-repeat;
+		display: inline-block;
+	}
+}
+
+// Desktop icons
+#desktop {
+	.icon {
+		height: 32px !important;
+		width: 32px !important;
+		background-size: 32px !important;
+	}
+}
+
+// Taskbar icons
+#taskbar {
+	.icon {
+		height: 16px !important;
+		width: 16px !important;
+		background-size: 16px !important;
+	}
+}
+
+// Submenu icons
+.submenu-content {
+	li.submenu-item.icon {
+		background-size: 22px !important;
+	}
+}
+
+// -------------------------
+// ICON CLASSES
+// -------------------------
+.icon {
+	&.recycleBin {
+		background-image: url('#{$icon-path}/recycle_bin_empty-2.png');
+	}
+	&.computer {
+		background-image: url('#{$icon-path}/computer_explorer-2.png');
+	}
+	&.dir-closed {
+		background-image: url('#{$icon-path}/directory_closed-3.png');
+	}
+	&.console {
+		background-image: url('#{$icon-path}/console_prompt-0.png');
+	}
+	&.notepad {
+		background-image: url('#{$icon-path}/notepad-4.png');
+	}
+	&.shutdown {
+		background-image: url('#{$icon-path}/shut_down_normal-3.png');
+	}
+	&.settings {
+		background-image: url('#{$icon-path}/settings_gear-0.png');
+	}
+	&.logoff {
+		background-image: url('#{$icon-path}/key_win-0.png');
+	}
+	&.run {
+		background-image: url('#{$icon-path}/application_hourglass_small_cool-4.png');
+	}
+	&.png {
+		background-image: url('#{$icon-path}/imagpng-1.png');
+	}
+	&.mp3 {
+		background-image: url('#{$icon-path}/soundgrn-2.png');
+	}
+	&.github {
+		background-image: url('#{$icon-path}/github.png');
+	}
+	&.tune {
+		background-image: url('#{$icon-path}/tune.png');
+	}
+	&.tsumugi {
+		background-image: url('#{$icon-path}/tsumugi.png');
+	}
+	&.megabonk-lab {
+		background-image: url('#{$icon-path}/megabonk-lab.png');
+	}
+}
