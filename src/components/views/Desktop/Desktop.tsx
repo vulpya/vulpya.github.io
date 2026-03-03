@@ -6,6 +6,8 @@ import Icon, { type IconType } from '../../Icon/Icon';
 import Terminal from '../../window/windows/Terminal';
 
 import './Desktop.scss';
+import Project from '../../Project/Project';
+import MegabonkLab from '../../MegabonkLab/MegabonkLab';
 
 export interface DesktopItem {
 	text: string;
@@ -27,19 +29,20 @@ export const Desktop = () => {
 			content: <p>Recycle Bin is empty.</p>
 		},
 		{
-			text: 'Computer',
-			icon: 'computer',
-			content: <p>Heyy, I'm Vulpya :33</p>
+			text: 'My Projects',
+			icon: 'dir-closed',
+            allowMaximize: false,
+			content: <Project />
 		},
 		{
-			text: 'Terminal',
+			text: 'Console',
 			icon: 'console',
 			content: <Terminal />
 		},
 		{
 			text: 'Megabonk Lab',
 			icon: 'megabonk-lab',
-			content: <iframe src="https://vulpya.github.io/megabonk-lab" />,
+			content: <MegabonkLab />,
 			fullscreen: true,
 			allowMaximize: false
 		},
@@ -50,7 +53,12 @@ export const Desktop = () => {
 		}
 	];
 
-	const openWindow = (title: string, content: React.ReactNode, fullscreen = false, allowMaximize = true) => {
+	const openWindow = (
+		title: string,
+		content: React.ReactNode,
+		fullscreen = false,
+		allowMaximize = true
+	) => {
 		const existing = windows.find((w) => w.title === title);
 		if (existing) {
 			focusWindow(existing.id);
@@ -61,9 +69,9 @@ export const Desktop = () => {
 			title,
 			content,
 			isMinimized: false,
-            allowMaximize, 
+			allowMaximize,
 			zIndex: topZIndex + 1,
-            fullscreen
+			fullscreen
 		};
 		setWindows([...windows, newWin]);
 		setTopZIndex((prev) => prev + 1);
@@ -101,7 +109,7 @@ export const Desktop = () => {
 					<div
 						key={item.text}
 						className="desktop-item"
-						onDoubleClick={() => {
+						onClick={() => {
 							if (item.link) {
 								window.open(item.link, '_blank')?.focus();
 								return;
@@ -110,10 +118,10 @@ export const Desktop = () => {
 								item.text,
 								item.content,
 								item.fullscreen,
-                                item.allowMaximize
+								item.allowMaximize
 							);
 						}}>
-						<Icon text={item.text} type={item.icon}></Icon>
+						<Icon text={item.text} type={item.icon} />
 					</div>
 				))}
 			</div>

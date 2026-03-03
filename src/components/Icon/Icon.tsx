@@ -13,7 +13,9 @@ export type IconType =
 	| 'github'
 	| 'tune'
 	| 'tsumugi'
-	| 'megabonk-lab';
+	| 'megabonk-lab'
+    | 'bocchi-the-cookie'
+	| 'the-binding-of-bocchi';
 
 interface IconProps {
 	text: string;

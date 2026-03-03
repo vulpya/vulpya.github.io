@@ -1,0 +1,24 @@
+@use '../../styles/variables' as vars;
+
+.dir-content {
+	padding: 0.2rem;
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+	align-self: center;
+
+	.desktop-item {
+		flex: 1 1 auto;
+		border: 1px solid transparent;
+		height: vars.$d-item-h;
+		width: vars.$d-item-w;
+
+		text-align: center;
+		user-select: none;
+
+		color: vars.$font-dark;
+		&:hover {
+			border: 1px solid vars.$black;
+		}
+	}
+}
