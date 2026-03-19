@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
+import Icon, { type IconType } from '../../Icon/Icon';
 import DragWindow, { type WindowState } from '../../window/Window';
 import Taskbar from '../../taskbar/Taskbar';
 
+import Projects from '../../Project/Projects';
+import MegabonkLab from '../../MegabonkLab/MegabonkLab';
 import Terminal from '../../window/windows/Terminal';
 
 import './Desktop.scss';
 
 export interface DesktopItem {
 	text: string;
-	icon: string;
+	icon: IconType;
 	link?: string;
 	content?: React.ReactNode;
+	fullscreen?: boolean;
+	allowMaximize?: boolean;
 }
 
 export const Desktop = () => {
@@ -24,19 +29,22 @@ export const Desktop = () => {
 			content: <p>Recycle Bin is empty.</p>
 		},
 		{
-			text: 'Computer',
-			icon: 'computer',
-			content: <p>Heyy, I'm Vulpya :33</p>
+			text: 'My Projects',
+			icon: 'dir-closed',
+            allowMaximize: false,
+			content: <Projects />
 		},
 		{
-			text: 'Terminal',
+			text: 'Console',
 			icon: 'console',
 			content: <Terminal />
 		},
 		{
 			text: 'Megabonk Lab',
 			icon: 'megabonk-lab',
-            link: 'https://vulpya.github.io/megabonk-lab'
+			content: <MegabonkLab />,
+			fullscreen: true,
+			allowMaximize: false
 		},
 		{
 			text: 'My Github',
@@ -45,7 +53,12 @@ export const Desktop = () => {
 		}
 	];
 
-	const openWindow = (title: string, content: React.ReactNode) => {
+	const openWindow = (
+		title: string,
+		content: React.ReactNode,
+		fullscreen = false,
+		allowMaximize = true
+	) => {
 		const existing = windows.find((w) => w.title === title);
 		if (existing) {
 			focusWindow(existing.id);
@@ -56,7 +69,9 @@ export const Desktop = () => {
 			title,
 			content,
 			isMinimized: false,
-			zIndex: topZIndex + 1
+			allowMaximize,
+			zIndex: topZIndex + 1,
+			fullscreen
 		};
 		setWindows([...windows, newWin]);
 		setTopZIndex((prev) => prev + 1);
@@ -94,17 +109,19 @@ export const Desktop = () => {
 					<div
 						key={item.text}
 						className="desktop-item"
-						onDoubleClick={() => {
+						onClick={() => {
 							if (item.link) {
 								window.open(item.link, '_blank')?.focus();
 								return;
 							}
-							openWindow(item.text, item.content);
+							openWindow(
+								item.text,
+								item.content,
+								item.fullscreen,
+								item.allowMaximize
+							);
 						}}>
-						<div className="icon-container">
-							<i className={`icon ${item.icon}`} />
-							<span>{item.text}</span>
-						</div>
+						<Icon text={item.text} type={item.icon} />
 					</div>
 				))}
 			</div>
@@ -115,9 +132,10 @@ export const Desktop = () => {
 					title={win.title}
 					width={300}
 					height={200}
-					allowMaximize
+					allowMaximize={win.allowMaximize}
 					zIndex={win.zIndex}
 					isMinimized={win.isMinimized}
+					fullscreen={win.fullscreen}
 					onMinimize={toggleWindow}
 					onClose={closeWindow}
 					onFocus={focusWindow}>
