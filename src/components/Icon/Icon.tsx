@@ -14,8 +14,9 @@ export type IconType =
 	| 'tune'
 	| 'tsumugi'
 	| 'megabonk-lab'
-    | 'bocchi-the-cookie'
-	| 'the-binding-of-bocchi';
+	| 'bocchi-the-cookie'
+	| 'the-binding-of-bocchi'
+	| 'miku-and-friends';
 
 interface IconProps {
 	text: string;

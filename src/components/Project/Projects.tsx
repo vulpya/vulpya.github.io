@@ -1,7 +1,7 @@
 import type { IconType } from '../Icon/Icon';
 import Icon from '../Icon/Icon';
 
-import './Project.scss';
+import './Projects.scss';
 
 export interface ProjectItem {
 	text: string;
@@ -22,9 +22,9 @@ const Projects = () => {
 			link: 'https://github.com/vulpya/bocchi-the-cookie'
 		},
 		{
-			text: 'The Binding of Bocchi',
-			icon: 'the-binding-of-bocchi',
-			link: 'https://github.com/vulpya/the-binding-of-bocchi'
+			text: 'Miku & Friends',
+			icon: 'miku-and-friends',
+			link: 'https://github.com/vulpya/miku-and-friends'
 		}
 	];
 

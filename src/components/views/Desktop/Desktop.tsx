@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
+import Icon, { type IconType } from '../../Icon/Icon';
 import DragWindow, { type WindowState } from '../../window/Window';
 import Taskbar from '../../taskbar/Taskbar';
 
-import Icon, { type IconType } from '../../Icon/Icon';
+import Projects from '../../Project/Projects';
+import MegabonkLab from '../../MegabonkLab/MegabonkLab';
 import Terminal from '../../window/windows/Terminal';
 
 import './Desktop.scss';
-import Project from '../../Project/Project';
-import MegabonkLab from '../../MegabonkLab/MegabonkLab';
 
 export interface DesktopItem {
 	text: string;
@@ -32,7 +32,7 @@ export const Desktop = () => {
 			text: 'My Projects',
 			icon: 'dir-closed',
             allowMaximize: false,
-			content: <Project />
+			content: <Projects />
 		},
 		{
 			text: 'Console',
